@@ -12,9 +12,9 @@ Cloner le dépot dans un dossier local :
 
 Si ce n'est pas déjà fait, configurer un compte `root` : 
 
-`$ sudo passwd`
+`$ sudo passwd root`
 
-Entrer le mot de passe `root. Il faut ensuite autoriser la connection SSH en superutilisateur : 
+Entrer le mot de passe `root`. Il faut ensuite autoriser la connection SSH en superutilisateur : 
 
 `$ sudo nano /etc/shh/ssh_config`, 
 
@@ -37,7 +37,7 @@ Cliquer sur `File > Open Project... > /chemin/vers/copie/locale/de/Temps_Reel/Pr
 Cliquer sur `Clean and Build`. Une page demandant de configurer la connection SSH s'ouvre. Choisir l'authentification par mot de passe. Une fenêtre de warning s'ouvre, cliquer sur `yes`. 
 Entrer l'id `root` et le mot de passe `root` et cocher la case `Remember Password`. 
 
-La configuration de NetBeans est normalement opérationnelle 
+La configuration de NetBeans est normalement opérationnelle. Tenter de lancer `Clean and Build`, et se reporter à la section [Troubleshooting](https://github.com/yop0/Temps_Reel/wiki/Installation-et-configuration#troubleshooting) si le résultat est différent de `Build successfully !`. 
 
 ### Troubleshooting
 #### NetBeans demande d'éditer la correspondance entre les chemins locaux et distants :
