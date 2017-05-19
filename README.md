@@ -3,6 +3,11 @@
 
 ***
 
+# Installation et configuration
+## _Remote compilation sur Raspberry Pi avec NetBeans_
+
+***
+
 ## Créer une copie locale pour compiler sur la Raspberry 
 Cloner le dépot dans un dossier local (sur le PC): 
 
