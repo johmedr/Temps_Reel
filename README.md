@@ -4,11 +4,15 @@
 ***
 
 ## Créer une copie locale pour compiler sur la Raspberry 
-Cloner le dépot dans un dossier local : 
+Cloner le dépot dans un dossier local (sur le PC): 
 
 `$ git clone https://github.com/yop0/Temps_Reel.git`
 
 ### Configuration de la Raspberry Pi
+
+Se connecter en SSH au Raspi, avec le login `pi` et le mot de passe `raspberry`.
+
+`$ ssh pi@adresse_rpi`
 
 Si ce n'est pas déjà fait, configurer un compte `root` : 
 
