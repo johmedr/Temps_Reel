@@ -1,93 +1,65 @@
-# Temps_Reel
+# Projet de Stijl
+# _Programmation Système orientée Temps Réel sur Xenomai_
 
-## I- Exigences et tests
+***
 
-### 1°) Le système est réinitialisable. (i.e. on peut le remettre dans l’état initial) - Possibilité de reprendre une connexion après un échec et assurance d’une communication fiable avec le robot, sans influence de pertes sur le comportement du système
+# Installation et configuration
+## _Remote compilation sur Raspberry Pi avec NetBeans_
 
-Test 1 : Tout lancer normalement, puis éteindre le moniteur et le relancer. 
-Résultats attendus : La communication se rétablit entre le moniteur et le robot, sans pertes de fonctionnalités. 
+***
 
-Test 2 : Envoyer des messages au robot, à travers un obstacle pour générer des messages incorrects. 
-Résultats attendus : Le robot détecte les messages incorrects, peut se reconnecter au moniteur (se réinitialise), et est toujours pilotable.
+## Créer une copie locale pour compiler sur la Raspberry 
+Cloner le dépot dans un dossier local (sur le PC): 
 
-### 2°) Éteindre le robot quand le moniteur est éteint
+`$ git clone https://github.com/yop0/Temps_Reel.git`
 
-Test : On envoie au robot des ordres de position, et on éteint subitement le moniteur.
-Résultats attendus : Le robot continue d’exécuter les ordres pendant 7 secondes, puis s’éteint devant l’absence de communication avec le moniteur.
+### Configuration de la Raspberry Pi
 
-### 3°) Contrôler déplacements et vitesse du robot toutes les 1 secondes. 
+Se connecter en SSH au Raspi, avec le login `pi` et le mot de passe `raspberry`.
 
-Test : Envoyer différents ordre de position, contrôler la position réelle du robot.
-Résultats attendus : Tous les ordres sont bien exécutés : le robot se place à la bonne position, avec la bonne vitesse.
+`$ ssh pi@adresse_rpi`
 
-### 4°) Contrôler l’état de la batterie 
+Si ce n'est pas déjà fait, configurer un compte `root` : 
 
-Test : thread apériodique “checkant” la batterie avant toute tentative d’action de la part du robot. Si batterie < seuil, alors l’action n’est pas réalisé et le robot est réinitialisé.
-Résultats attendus : Le robot vérifie l’état de sa batterie avant chaque action intentée et n’exécute pas l’action demandée si l’état de la batterie n’est pas suffisant pour réaliser l’action désirée.
+`$ sudo passwd root`
 
-### 5°) Être capable d’enchaîner les consignes (le robot doit pouvoir exécuter une consigne après exécution d’une consigne extérieure). 
+Entrer le mot de passe `root`. Il faut ensuite autoriser la connection SSH en superutilisateur : 
 
-Test : Envoyer rapidement des ordres différents au robot 
-Résultats attendus : Le robot exécute bien les consignes dans l’ordre d’émission, il n’y a pas de problème dans l’exécution de ces consignes. Une consigne attend que la consigne antérieure se produise entièrement avant de s’exécuter (pas de chevauchement).
+`$ sudo nano /etc/shh/ssh_config`, 
 
+Puis chercher la ligne `PermitRootLogin` et remplacer la valeur par `yes`. On peut maintenant se connecter en superutilisateur sur la carte. 
 
-### 6°) Connaître position robot dans l’arène grâce à la caméra
+Exécuter ensuite : 
 
-Test : placer le robot aléatoirement dans l’arène et vérifier si la position qu’il renvoie correspond bien à celle occupée physiquement par le robot.
-Résultats attendus : Le robot renvoie les bonnes coordonnées de sa position.
+`$ ifconfig`
 
-## II- Enumération des threads
+Récupérer l'adresse IP de l'interface ethernet. 
 
-### 1°) th_deplacer :
-type : périodique de période 1s.
-port d’entrée : reponse (retour du robot)
-ports de sortie : * ordre (de déplacement et/ou de vitesse)
-              * message
+### Configuration de NetBeans
 
-### 2°) th_controler_batterie :
-type : apériodique
-ports d’entrée : * message (venant d’une action qui est intentée)
-            * réponse (retour du robot)
-ports de sortie : * message (etat_batterie)
-            * ordre (autoriser_action ou refuser_action)
+Ouvrir [NetBeans IDE 8.2](https://netbeans.org/downloads/) version C++ sur le PC : 
 
-### 3°) th_controler_deplacement :
-type : apériodique
-ports d’entrée : * message (venant du th_deplacer)
-            * réponse (retour du robot)
-port de sortie : * message (true or false selon comparaison message et reponse)
+`$ netbeans`
 
-### 4°) th_reinitialiser_et/ou_eteindre :
-type : apériodique
-ports d’entrée : * message (etat de la communication venant du th_communiquer)
-            * message (etat_batterie)
-            * réponse (retour du robot)
-port de sortie : * ordre (pour arrêter ou réinitialiser le robot)
-            *  rt_task_suspend() (à toutes les tâches en action)
+Cliquer sur `File > Open Project... > /chemin/vers/copie/locale/de/Temps_Reel/ProjetDeStijl_Groupe`
 
-### 5°) th_communiquer : 
-type : apériodique
-ports d’entrée : * inputStream (communication depuis le moniteur)
- * ordre_connecterServeur 
-ports de sortie : * ordre_connecterRobot
-          * message_etat_connection (pour le th_reinitialiser_et/ou_eteindre) 
+Cliquer sur `Clean and Build`. Une page demandant de configurer la connection SSH s'ouvre. Choisir l'authentification par mot de passe. Une fenêtre de warning s'ouvre, cliquer sur `yes`. 
+Entrer l'id `root` et le mot de passe `root` et cocher la case `Remember Password`. 
 
-### 6°) th_connecter : 
-type : apériodique
-ports d’entrée : * ordre_connecterRobot
-             * reponse
-ports de sortie : * ordre 
- * message
+La configuration de NetBeans est normalement opérationnelle. Tenter de lancer `Clean and Build`, et se reporter à la section [Troubleshooting](https://github.com/yop0/Temps_Reel/wiki/Installation-et-configuration#troubleshooting) si le résultat est différent de `Build successful`. 
 
-### 7°) th_envoyer 
-type  : apériodique
-ports d’entrée : * message
-ports de sortie : * outputStream
-         
-### 8°) th_controler_position : 
-type : apériodique
-ports d’entrée : * inputStream (communication depuis le moniteur)
- * ordre_connecterServeur 
-ports de sortie : * ordre_connecterRobot
-          * message_etat_connection (pour le th_reinitialiser_et/ou_eteindre) 
+### Troubleshooting
+#### NetBeans demande d'éditer la correspondance entre les chemins locaux et distants :
+Se connecter en superutilisateur à la carte : 
 
+`$ ssh root@adresse_ip_rpi`
+
+Entrer le mot de passe, puis créer ensuite un dossier qui contiendra la copie embarquée du code. 
+
+`$ mkdir -p /root/.netbeans/remote/nom_du_dossier/ProjetDeStijl_Groupe` 
+
+Remplir les correspondances en mettant : 
+* Dossier local : `/chemin/vers/copie/locale/de/Temps_Reel/ProjetDeStijl_Groupe`
+* Dossier remote : `/root/.netbeans/remote/nom_du_dossier/ProjetDeStijl_Groupe`
+
+_Dans certains cas, il faut entrer deux correspondances : entrer les deux mêmes lignes._
