@@ -9,11 +9,11 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=GNU-Linux
 CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-Linux
-CND_ARTIFACT_NAME_Debug=projetdestijl_perso
-CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux/projetdestijl_perso
+CND_ARTIFACT_NAME_Debug=projetdestijl_groupe
+CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux/projetdestijl_groupe
 CND_PACKAGE_DIR_Debug=dist/Debug/GNU-Linux/package
-CND_PACKAGE_NAME_Debug=projetdestijlperso.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux/package/projetdestijlperso.tar
+CND_PACKAGE_NAME_Debug=projetdestijlgroupe.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux/package/projetdestijlgroupe.tar
 # Release configuration
 CND_PLATFORM_Release=GNU-Linux
 CND_ARTIFACT_DIR_Release=dist/Release/GNU-Linux

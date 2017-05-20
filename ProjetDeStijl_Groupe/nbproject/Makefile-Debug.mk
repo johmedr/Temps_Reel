@@ -58,11 +58,11 @@ LDLIBSOPTIONS=
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/projetdestijl_perso
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/projetdestijl_groupe
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/projetdestijl_perso: ${OBJECTFILES}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/projetdestijl_groupe: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/projetdestijl_perso ${OBJECTFILES} ${LDLIBSOPTIONS} -I/usr/destijl -I/usr/xenomai/include/mercury -I/usr/xenomai/include -D_GNU_SOURCE -D_REENTRANT -D__MERCURY__ -I/usr/xenomai/include/alchemy /home/pi/RT_TP/C-TP-RT/obj/serial.o /home/pi/RT_TP/C-TP-RT/obj/imagerie.o /home/pi/RT_TP/C-TP-RT/obj/tcpServer.o -lalchemy -lcopperplate /usr/xenomai/lib/xenomai/bootstrap.o -Wl,--wrap=main -Wl,--dynamic-list=/usr/xenomai/lib/dynlist.ld -L/usr/xenomai/lib -lmercury -lpthread -lrt -Wl,-R/usr/xenomai/lib -L/opt/vc/lib -I/usr/local/include -lopencv_highgui -lopencv_core -lopencv_imgcodecs -lraspicam_cv -lopencv_imgproc
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/projetdestijl_groupe ${OBJECTFILES} ${LDLIBSOPTIONS} -I/usr/destijl -I/usr/xenomai/include/mercury -I/usr/xenomai/include -D_GNU_SOURCE -D_REENTRANT -D__MERCURY__ -I/usr/xenomai/include/alchemy /home/pi/RT_TP/C-TP-RT/obj/serial.o /home/pi/RT_TP/C-TP-RT/obj/imagerie.o /home/pi/RT_TP/C-TP-RT/obj/tcpServer.o -lalchemy -lcopperplate /usr/xenomai/lib/xenomai/bootstrap.o -Wl,--wrap=main -Wl,--dynamic-list=/usr/xenomai/lib/dynlist.ld -L/usr/xenomai/lib -lmercury -lpthread -lrt -Wl,-R/usr/xenomai/lib -L/opt/vc/lib -I/usr/local/include -lopencv_highgui -lopencv_core -lopencv_imgcodecs -lraspicam_cv -lopencv_imgproc
 
 ${OBJECTDIR}/functions.o: functions.cpp
 	${MKDIR} -p ${OBJECTDIR}
