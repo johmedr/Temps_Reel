@@ -35,6 +35,10 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/_ext/f57a202d/imagerie.o \
+	${OBJECTDIR}/_ext/f57a202d/serial.o \
+	${OBJECTDIR}/_ext/f57a202d/tcpServer.o \
+	${OBJECTDIR}/_ext/f57a202d/th_camera.o \
 	${OBJECTDIR}/functions.o \
 	${OBJECTDIR}/global.o \
 	${OBJECTDIR}/main.o
@@ -63,6 +67,26 @@ LDLIBSOPTIONS=
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/projetdestijl_groupe: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/projetdestijl_groupe ${OBJECTFILES} ${LDLIBSOPTIONS} -I/usr/destijl -I/usr/xenomai/include/mercury -I/usr/xenomai/include -D_GNU_SOURCE -D_REENTRANT -D__MERCURY__ -I/usr/xenomai/include/alchemy /home/pi/RT_TP/C-TP-RT/obj/serial.o /home/pi/RT_TP/C-TP-RT/obj/imagerie.o /home/pi/RT_TP/C-TP-RT/obj/tcpServer.o -lalchemy -lcopperplate /usr/xenomai/lib/xenomai/bootstrap.o -Wl,--wrap=main -Wl,--dynamic-list=/usr/xenomai/lib/dynlist.ld -L/usr/xenomai/lib -lmercury -lpthread -lrt -Wl,-R/usr/xenomai/lib -L/opt/vc/lib -I/usr/local/include -lopencv_highgui -lopencv_core -lopencv_imgcodecs -lraspicam_cv -lopencv_imgproc
+
+${OBJECTDIR}/_ext/f57a202d/imagerie.o: ../includes_raspi/src/imagerie.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/f57a202d
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -w -I/../../Desktop/xenomai-3.0.4/include/alchemy -I/../../Desktop/xenomai-3.0.4/include/copperplate -I/../../Desktop/xenomai-3.0.4/include/xenomai -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f57a202d/imagerie.o ../includes_raspi/src/imagerie.cpp
+
+${OBJECTDIR}/_ext/f57a202d/serial.o: ../includes_raspi/src/serial.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/f57a202d
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -w -I/../../Desktop/xenomai-3.0.4/include/alchemy -I/../../Desktop/xenomai-3.0.4/include/copperplate -I/../../Desktop/xenomai-3.0.4/include/xenomai -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f57a202d/serial.o ../includes_raspi/src/serial.cpp
+
+${OBJECTDIR}/_ext/f57a202d/tcpServer.o: ../includes_raspi/src/tcpServer.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/f57a202d
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -w -I/../../Desktop/xenomai-3.0.4/include/alchemy -I/../../Desktop/xenomai-3.0.4/include/copperplate -I/../../Desktop/xenomai-3.0.4/include/xenomai -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f57a202d/tcpServer.o ../includes_raspi/src/tcpServer.cpp
+
+${OBJECTDIR}/_ext/f57a202d/th_camera.o: ../includes_raspi/src/th_camera.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/f57a202d
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -w -I/../../Desktop/xenomai-3.0.4/include/alchemy -I/../../Desktop/xenomai-3.0.4/include/copperplate -I/../../Desktop/xenomai-3.0.4/include/xenomai -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/f57a202d/th_camera.o ../includes_raspi/src/th_camera.cpp
 
 ${OBJECTDIR}/functions.o: functions.cpp
 	${MKDIR} -p ${OBJECTDIR}

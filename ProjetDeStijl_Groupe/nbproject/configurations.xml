@@ -4,8 +4,17 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <logicalFolder name="src" displayName="src" projectFiles="true">
+        <itemPath>../includes_raspi/src/imagerie.cpp</itemPath>
+        <itemPath>../includes_raspi/src/imagerie.h</itemPath>
+        <itemPath>../includes_raspi/src/serial.cpp</itemPath>
+        <itemPath>../includes_raspi/src/serial.h</itemPath>
+        <itemPath>../includes_raspi/src/tcpServer.cpp</itemPath>
+        <itemPath>../includes_raspi/src/tcpServer.h</itemPath>
+      </logicalFolder>
       <itemPath>/../../Desktop/C-TP-RT/src/imagerie.h</itemPath>
       <itemPath>/../../Desktop/C-TP-RT/src/tcpServer.h</itemPath>
+      <itemPath>../includes_raspi/src/th_camera.h</itemPath>
       <itemPath>/../../Desktop/xenomai-3.0.4/include/alchemy/timer.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -21,6 +30,7 @@
       <itemPath>global.h</itemPath>
       <itemPath>includes.h</itemPath>
       <itemPath>main.cpp</itemPath>
+      <itemPath>../includes_raspi/src/th_camera.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -34,6 +44,9 @@
       <itemPath>Makefile</itemPath>
     </logicalFolder>
   </logicalFolder>
+  <sourceRootList>
+    <Elem>../includes_raspi/src</Elem>
+  </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
     <conf name="Debug" type="1">
@@ -56,6 +69,28 @@
           <commandLine>-I/usr/destijl -I/usr/xenomai/include/mercury -I/usr/xenomai/include -D_GNU_SOURCE -D_REENTRANT -D__MERCURY__ -I/usr/xenomai/include/alchemy /home/pi/RT_TP/C-TP-RT/obj/serial.o /home/pi/RT_TP/C-TP-RT/obj/imagerie.o /home/pi/RT_TP/C-TP-RT/obj/tcpServer.o -lalchemy -lcopperplate /usr/xenomai/lib/xenomai/bootstrap.o -Wl,--wrap=main -Wl,--dynamic-list=/usr/xenomai/lib/dynlist.ld -L/usr/xenomai/lib -lmercury -lpthread -lrt -Wl,-R/usr/xenomai/lib -L/opt/vc/lib -I/usr/local/include -lopencv_highgui -lopencv_core -lopencv_imgcodecs -lraspicam_cv -lopencv_imgproc</commandLine>
         </linkerTool>
       </compileType>
+      <item path="../includes_raspi/src/imagerie.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../includes_raspi/src/imagerie.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../includes_raspi/src/serial.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../includes_raspi/src/serial.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../includes_raspi/src/tcpServer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../includes_raspi/src/tcpServer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../includes_raspi/src/th_camera.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../includes_raspi/src/th_camera.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="/../../Desktop/C-TP-RT/src/imagerie.h"
             ex="false"
             tool="3"
@@ -104,6 +139,28 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="../includes_raspi/src/imagerie.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../includes_raspi/src/imagerie.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../includes_raspi/src/serial.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../includes_raspi/src/serial.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../includes_raspi/src/tcpServer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../includes_raspi/src/tcpServer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../includes_raspi/src/th_camera.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../includes_raspi/src/th_camera.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="/../../Desktop/C-TP-RT/src/imagerie.h"
             ex="false"
             tool="3"
