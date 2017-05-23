@@ -63,3 +63,14 @@ Remplir les correspondances en mettant :
 * Dossier remote : `/root/.netbeans/remote/nom_du_dossier/ProjetDeStijl_Groupe`
 
 _Dans certains cas, il faut entrer deux correspondances : entrer les deux mêmes lignes._
+
+#### NetBeans n'arrive pas a exécuter le fichier `/root/.netbeans/remote/nom_du_dossier/ProjetDeStijl_Groupe/sudo`
+Se connecter en superutilisateur à la carte : 
+
+`$ ssh root@adresse_ip_rpi`
+
+Entrer le mot de passe puis créer un lien symbolique vers `/usr/bin/sudo` dans le dossier `/root/.netbeans/remote/nom_du_dossier/ProjetDeStijl_Groupe/` : 
+
+`$ ln -s /usr/bin/sudo /root/.netbeans/remote/nom_du_dossier/ProjetDeStijl_Groupe/`
+
+Relancer la compilation à distance, qui devrait maintenant fonctionner.
